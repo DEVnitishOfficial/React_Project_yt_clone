@@ -1,39 +1,41 @@
-import React,{createContext, useState, useEffect} from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-import{fetchDataFroApi} from "../utils/api"
-
+import { fetchDataFromApi } from "../utils/api";
 export const Context = createContext();
 
 export const AppContext = (props) => {
-    const [loading, setLoading] = useState(false);          
-    const [searchResult, setSearchResult] = useState(false);
-    const [selectCategories, setSelectCategories] = useState("New");
+    const [loading, setLoading] = useState(false);
+    const [searchResults, setSearchResults] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("New");
     const [mobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
-        fetchSelectedCategoryData(selectCategories)
-    },[selectCategories])
+        fetchSelectedCategoryData(selectedCategory);
+    }, [selectedCategory]);
 
     const fetchSelectedCategoryData = (query) => {
-        setLoading(true)
-        fetchDataFroApi(`search/?q=${query}`).then((contents) => {
-
+        setLoading(true);
+        fetchDataFromApi(`search/?q=${query}`).then(({ contents }) => {
             console.log(contents);
-            setSearchResult(contents)
-            setLoading(false)
+            setSearchResults(contents);
+            setLoading(false);
+        });
+    };
 
-        })
-            
-    }
-
-    return(
-        <Context.Provider value={{
-            loading, setLoading,
-            searchResult, setSearchResult,
-            selectCategories,setSelectCategories,
-            mobileMenu,setMobileMenu
-        }}>
+    return (
+        <Context.Provider
+            value={{
+                loading,
+                setLoading,
+                searchResults,
+                setSearchResults,
+                selectedCategory,
+                setSelectedCategory,
+                mobileMenu,
+                setMobileMenu,
+            }}
+        >
             {props.children}
         </Context.Provider>
-    )
-}
+    );
+};

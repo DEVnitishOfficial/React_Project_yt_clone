@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios from "axios";  // axios is JavaScript library used for making HTTP requests, particularly for fetching data from APIs.
 
 const BASE_URL='https://youtube138.p.rapidapi.com'
 
 const options = {
     params: {
-      hl: 'en',
-      gl: 'US'
+      hl: 'en',  //host language → 'en' stands for English language
+      gl: 'US'   // geolocation → 'US' stands for the United States as the geographical region
     },
     headers: {
       'X-RapidAPI-Key': process.env.REACT_APP_YOUTUBE_API_KEY,
@@ -13,7 +13,8 @@ const options = {
     }
   };
 
-  export const fetchDataFroApi = async (url) => {
+  export const fetchDataFromApi = async (url) => {
     const {data} = await axios.get(`${BASE_URL}/${url}`,options);
+    console.log('this is nitish data',data);
     return data;
   }
