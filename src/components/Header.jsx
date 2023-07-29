@@ -22,7 +22,7 @@ const {loading,mobileMenu,setMobileMenu} = useContext(Context);
 const navigate = useNavigate();
 
 const searchQueryHandler = (event) => {
-  if((event?.key === "Entre" || event === "searchButton") && searchQuery?.length > 0){ // here we add ?(optiona chaining) suppose event comes undefined or any falsy value then our code will not execute further and it's preventing app crashing
+  if((event?.key === "Enter" || event === "searchButton") && searchQuery?.length > 0){ // here we add ?(optiona chaining) suppose event comes undefined or any falsy value then our code will not execute further and it's preventing app crashing
     navigate(`/searchResult/${searchQuery}`)
 
   }

@@ -42,7 +42,7 @@ code {
     animation: loading 3s linear infinite;
 }
 .bar:nth-child(2) {
-    background-color: #3b78e7;
+    background-color: #04f017;
     animation: loading 3s linear 1s infinite;
 }
 .bar:nth-child(3) {
